@@ -13,23 +13,17 @@ import {
   styleUrls: ["./exercice2.component.css"],
 })
 export class Exercice2Component implements OnInit, OnChanges {
-  public valeur: string;
-  @ViewChild("myinput") public el: ElementRef<HTMLInputElement>;
+  @ViewChild("myInput") public el: HTMLInputElement;
+
+  public valeur: string = "";
 
   constructor() {}
 
+  ngOnChanges(event: any): void {
+    this.valeur = event.target.value;
+  }
+
   ngOnInit() {
-    this.valeur = "toto";
-  }
-
-  changeInput() {
-    console.log("changeInput");
-    this.valeur = this.el.nativeElement.value;
-  }
-
-  ngOnChanges(changements: SimpleChanges) {
-    //Insérez votre code de détection du changement ici
-    console.log(changements.libelle.currentValue); //Valeur actuelle du libellé (après le changement)
-    this.valeur = changements.libelle.currentValue;
+    this.valeur = "";
   }
 }
